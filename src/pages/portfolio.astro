@@ -1,0 +1,279 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PropertyCard from '../components/PropertyCard.astro';
+
+const allProperties = [
+	{
+		title: "Grachtenpand Prinsengracht",
+		type: "Grachtenpand",
+		location: "Amsterdam-Centrum",
+		price: "€ 2.450.000 k.k.",
+		status: "aangekocht" as const,
+		surface: 210,
+		rooms: 6,
+		image: "/images/canal_house.png",
+		category: "Aangekocht"
+	},
+	{
+		title: "Villa Duinzicht",
+		type: "Vrijstaande Villa",
+		location: "Bloemendaal",
+		price: "€ 4.890.000 k.k.",
+		status: "verkocht" as const,
+		surface: 380,
+		rooms: 9,
+		image: "/images/modern_villa.png",
+		category: "Verkocht"
+	},
+	{
+		title: "City Penthouse",
+		type: "Penthouse Loft",
+		location: "Rotterdam Kop van Zuid",
+		price: "€ 1.750.000 k.k.",
+		status: "verkocht" as const,
+		surface: 185,
+		rooms: 4,
+		image: "/images/luxury_penthouse.png",
+		category: "Verkocht"
+	},
+	{
+		title: "Karakteristieke Loft Oudegracht",
+		type: "Design Loft",
+		location: "Utrecht-Centrum",
+		price: "€ 985.000 k.k.",
+		status: "aangekocht" as const,
+		surface: 125,
+		rooms: 3,
+		image: "/images/luxury_penthouse.png",
+		category: "Aangekocht"
+	},
+	{
+		title: "Landhuis Blaricum",
+		type: "Exclusief Landhuis",
+		location: "Blaricum (Gooi)",
+		price: "€ 3.650.000 k.k.",
+		status: "aangekocht" as const,
+		surface: 295,
+		rooms: 8,
+		image: "/images/hero_house.png",
+		category: "Aangekocht"
+	},
+	{
+		title: "Herenhuis Kenaupark",
+		type: "Klassiek Herenhuis",
+		location: "Haarlem-Centrum",
+		price: "€ 1.950.000 k.k.",
+		status: "verkocht" as const,
+		surface: 245,
+		rooms: 7,
+		image: "/images/canal_house.png",
+		category: "Verkocht"
+	}
+];
+---
+
+<Layout title="Portfolio" description="Bekijk ons portfolio van succesvol aangekochte en verkochte exclusieve woningen in Amsterdam, Haarlem, Bloemendaal en het Gooi.">
+	
+	<!-- Page Header -->
+	<section class="page-header">
+		<div class="container text-center">
+			<span class="section-subtitle">Bewezen Resultaten</span>
+			<h1>Ons Portfolio</h1>
+			<div class="section-divider"></div>
+			<p class="lead-text">Een selectie van door ons aangekochte en verkochte woningen. Wij laten de resultaten voor zich spreken.</p>
+		</div>
+	</section>
+
+	<!-- Portfolio Filter Section -->
+	<section class="portfolio-section">
+		<div class="container">
+			
+			<!-- Filter Controls -->
+			<div class="filter-controls">
+				<button class="filter-btn active" data-filter="all" id="filter-btn-all">Alles</button>
+				<button class="filter-btn" data-filter="aangekocht" id="filter-btn-aangekocht">Aangekocht</button>
+				<button class="filter-btn" data-filter="verkocht" id="filter-btn-verkocht">Verkocht</button>
+			</div>
+
+			<!-- Grid -->
+			<div class="portfolio-grid" id="portfolio-grid">
+				{allProperties.map(property => (
+					<div class="portfolio-item-wrapper" data-status={property.status}>
+						<PropertyCard {...property} />
+					</div>
+				))}
+			</div>
+
+			<!-- Empty State -->
+			<div class="portfolio-empty-state" id="portfolio-empty" style="display: none;">
+				<p>Geen resultaten gevonden voor dit filter.</p>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		// Client side filtering with micro-animations
+		const filterButtons = document.querySelectorAll('.filter-btn');
+		const portfolioItems = document.querySelectorAll<HTMLElement>('.portfolio-item-wrapper');
+		const emptyState = document.getElementById('portfolio-empty');
+
+		filterButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				// Remove active class from other buttons
+				filterButtons.forEach(btn => btn.classList.remove('active'));
+				// Add active class to clicked button
+				button.classList.add('active');
+
+				const filterValue = button.getAttribute('data-filter');
+				let visibleCount = 0;
+
+				portfolioItems.forEach(item => {
+					const status = item.getAttribute('data-status');
+					
+					// Animation: fade out first
+					item.style.opacity = '0';
+					item.style.transform = 'scale(0.95)';
+					
+					setTimeout(() => {
+						if (filterValue === 'all' || status === filterValue) {
+							item.style.display = 'block';
+							visibleCount++;
+							// Animation: fade back in
+							setTimeout(() => {
+								item.style.opacity = '1';
+								item.style.transform = 'scale(1)';
+							}, 50);
+						} else {
+							item.style.display = 'none';
+						}
+
+						// Toggle empty state message
+						if (emptyState) {
+							emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+						}
+					}, 300); // matches CSS transitions
+				});
+			});
+		});
+	</script>
+</Layout>
+
+<style>
+	/* Page Header */
+	.page-header {
+		background-color: var(--color-bg-dark);
+		color: var(--color-white);
+		padding: 6rem 0 5rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	}
+
+	.page-header h1 {
+		font-size: 3.2rem;
+		color: var(--color-white);
+	}
+
+	.lead-text {
+		font-size: 1.2rem;
+		font-weight: 300;
+		max-width: 700px;
+		margin: 0 auto;
+		color: rgba(255, 255, 255, 0.85);
+	}
+
+	/* Portfolio Section */
+	.portfolio-section {
+		background-color: var(--color-bg-light);
+		padding: 5rem 0 7.5rem 0;
+	}
+
+	/* Filter Controls */
+	.filter-controls {
+		display: flex;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-bottom: 4rem;
+	}
+
+	.filter-btn {
+		background-color: var(--color-white);
+		border: 1px solid var(--color-border);
+		color: var(--color-text-dark);
+		padding: 0.75rem 2.5rem;
+		font-family: var(--font-sans);
+		font-size: 0.9rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		cursor: pointer;
+		border-radius: 2px;
+		transition: var(--transition-smooth);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.filter-btn:hover {
+		border-color: var(--color-primary);
+		color: var(--color-primary);
+		transform: translateY(-2px);
+	}
+
+	.filter-btn.active {
+		background-color: var(--color-primary);
+		border-color: var(--color-primary);
+		color: var(--color-white);
+		box-shadow: 0 5px 15px rgba(191, 161, 95, 0.3);
+	}
+
+	/* Grid */
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2.5rem;
+	}
+
+	.portfolio-item-wrapper {
+		transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease allow-discrete;
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	/* Empty State */
+	.portfolio-empty-state {
+		text-align: center;
+		padding: 5rem 0;
+		color: var(--color-text-muted);
+		font-size: 1.1rem;
+		font-family: var(--font-serif);
+	}
+
+	/* Responsive */
+	@media (max-width: 1024px) {
+		.portfolio-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.page-header h1 {
+			font-size: 2.6rem;
+		}
+
+		.filter-controls {
+			flex-direction: column;
+			gap: 0.8rem;
+			align-items: stretch;
+			max-width: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 3rem;
+		}
+
+		.filter-btn {
+			padding: 0.6rem 2rem;
+		}
+
+		.portfolio-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

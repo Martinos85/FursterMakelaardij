@@ -1,0 +1,731 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import PropertyCard from '../components/PropertyCard.astro';
+
+// We'll showcase 3 properties on the homepage
+const featuredProperties = [
+	{
+		title: "Grachtenpand Prinsengracht",
+		type: "Grachtenpand",
+		location: "Amsterdam-Centrum",
+		price: "€ 2.450.000 k.k.",
+		status: "aangekocht" as const,
+		surface: 210,
+		rooms: 6,
+		image: "/images/canal_house.png"
+	},
+	{
+		title: "Villa Duinzicht",
+		type: "Vrijstaande Villa",
+		location: "Bloemendaal",
+		price: "€ 4.890.000 k.k.",
+		status: "verkocht" as const,
+		surface: 380,
+		rooms: 9,
+		image: "/images/modern_villa.png"
+	},
+	{
+		title: "City Penthouse",
+		type: "Penthouse Loft",
+		location: "Rotterdam Kop van Zuid",
+		price: "€ 1.750.000 k.k.",
+		status: "verkocht" as const,
+		surface: 185,
+		rooms: 4,
+		image: "/images/luxury_penthouse.png"
+	}
+];
+---
+
+<Layout title="Exclusief Vastgoed" description="Aurelia Real Estate is de toonaangevende woningmakelaar voor het hogere segment in Amsterdam en omstreken. Aankoop, verkoop en taxaties met uitzonderlijke service.">
+	
+	<!-- Hero Section -->
+	<section class="hero-section">
+		<div class="hero-background" style="background-image: url('/images/hero_house.png');"></div>
+		<div class="hero-overlay"></div>
+		<div class="container hero-content animate-fade-in">
+			<span class="hero-subtitle">Welkom bij Aurelia Real Estate</span>
+			<h1>Uw sleutel tot exclusief wonen</h1>
+			<p>Persoonlijke begeleiding, diepgaande marktkennis en een discreet netwerk. Wij realiseren uw woonwensen in het topsegment.</p>
+			<div class="hero-actions">
+				<a href="/portfolio" class="btn btn-primary" id="hero-btn-portfolio">Bekijk Portfolio</a>
+				<a href="/diensten" class="btn btn-outline btn-white" id="hero-btn-diensten">Onze Diensten</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Key Metrics / USP Section -->
+	<section class="usp-section">
+		<div class="container">
+			<div class="usp-grid">
+				<div class="usp-item">
+					<span class="usp-number">15+</span>
+					<span class="usp-label">Jaar Ervaring</span>
+				</div>
+				<div class="usp-item">
+					<span class="usp-number">250+</span>
+					<span class="usp-label">Woningen Bemiddeld</span>
+				</div>
+				<div class="usp-item">
+					<span class="usp-number">9.6</span>
+					<span class="usp-label">Klantwaardering</span>
+				</div>
+				<div class="usp-item">
+					<span class="usp-number">100%</span>
+					<span class="usp-label">Discretie Gegarandeerd</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Preview Section -->
+	<section class="services-preview-section">
+		<div class="container">
+			<div class="section-header text-center">
+				<span class="section-subtitle">Wat Wij Doen</span>
+				<h2>Onze Exclusieve Diensten</h2>
+				<div class="section-divider"></div>
+				<p class="section-description">Van strategische aankoopbegeleiding tot high-end verkoopmarketing en gevalideerde taxaties. Wij ontzorgen u volledig.</p>
+			</div>
+
+			<div class="services-grid">
+				<ServiceCard 
+					title="Aankoopbegeleiding" 
+					description="Wij vinden en verwerven uw droomwoning, vaak nog voordat deze op de openbare markt (Funda) verschijnt." 
+					link="/diensten#aankoop" 
+					iconName="buy"
+				/>
+				<ServiceCard 
+					title="Verkoopbemiddeling" 
+					description="Een op maat gemaakte verkoopstrategie met professionele presentatie voor een optimaal transactieresultaat." 
+					link="/diensten#verkoop" 
+					iconName="sell"
+				/>
+				<ServiceCard 
+					title="Taxaties & Advies" 
+					description="Gevalideerde taxatierapporten die voldoen aan de strengste normen van het NWWI en financiers." 
+					link="/diensten#taxatie" 
+					iconName="valuation"
+				/>
+			</div>
+			
+			<div class="text-center mt-4">
+				<a href="/diensten" class="btn btn-outline" id="services-more-btn">Bekijk alle details</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- About Us Highlight Section -->
+	<section class="about-highlight-section">
+		<div class="container about-grid">
+			<div class="about-content">
+				<span class="section-subtitle">Over Aurelia</span>
+				<h2>De kunst van het makelen</h2>
+				<p>Aurelia Real Estate is opgericht vanuit de visie dat de bemiddeling in exclusief vastgoed om meer vraagt dan alleen een transactie. Het gaat om het begrijpen van uw levensstijl, uw ambities en het koesteren van het unieke karakter van elk object.</p>
+				<p>Met ons kantoor aan de Amsterdamse Keizersgracht richten wij ons op grachtenpanden, luxe appartementen, penthouses en exclusieve villa's in Midden-Nederland. Onze aanpak is proactief, doortastend en uiterst discreet.</p>
+				<a href="#contact" class="btn btn-primary" id="about-contact-btn">Persoonlijk kennismaken</a>
+			</div>
+			<div class="about-image-wrapper">
+				<div class="about-image-border"></div>
+				<img src="/images/canal_house.png" alt="Aurelia Real Estate Kantoor" class="about-image" />
+			</div>
+		</div>
+	</section>
+
+	<!-- Featured Properties Section -->
+	<section class="featured-properties-section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<span class="section-subtitle">Recent Succes</span>
+					<h2>Uitgelicht Portfolio</h2>
+				</div>
+				<a href="/portfolio" class="btn btn-outline" id="view-portfolio-btn">Volledig Portfolio</a>
+			</div>
+			
+			<div class="properties-grid">
+				{featuredProperties.map(property => (
+					<PropertyCard {...property} />
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonials Section -->
+	<section class="testimonials-section">
+		<div class="container">
+			<div class="section-header text-center">
+				<span class="section-subtitle">Referenties</span>
+				<h2>Wat onze cliënten zeggen</h2>
+				<div class="section-divider"></div>
+			</div>
+
+			<div class="testimonials-grid">
+				<div class="testimonial-card">
+					<div class="quote-icon">“</div>
+					<p class="testimonial-text">Dankzij het stille netwerk van Aurelia hebben wij onze droomwoning aan de gracht kunnen aankopen nog voordat deze op de markt kwam. De aankoopbegeleiding was uiterst professioneel en gaf veel rust.</p>
+					<div class="testimonial-author">
+						<strong>Familie De Vries</strong>
+						<span>Aankoop Amsterdam</span>
+					</div>
+				</div>
+				<div class="testimonial-card">
+					<div class="quote-icon">“</div>
+					<p class="testimonial-text">De presentatie van onze villa in Bloemendaal was van internationaal niveau. De verkoopstrategie klopte tot in de details, wat resulteerde in een snelle verkoop boven de vraagprijs.</p>
+					<div class="testimonial-author">
+						<strong>Dhr. S. van den Berg</strong>
+						<span>Verkoop Bloemendaal</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Section -->
+	<section class="contact-section" id="contact">
+		<div class="container contact-container">
+			<div class="contact-info">
+				<span class="section-subtitle">Contact</span>
+				<h2>Laten we kennismaken</h2>
+				<p>Heeft u plannen om een exclusieve woning aan te kopen, te verkopen, of bent u op zoek naar een betrouwbare taxatie? Neem discreet contact met ons op voor een vrijblijvend gesprek.</p>
+				
+				<div class="contact-details">
+					<div class="contact-detail-item">
+						<strong>Adres</strong>
+						<span>Keizersgracht 421, 1016 EK Amsterdam</span>
+					</div>
+					<div class="contact-detail-item">
+						<strong>Telefoon</strong>
+						<span><a href="tel:+31205550199">020 - 555 0199</a></span>
+					</div>
+					<div class="contact-detail-item">
+						<strong>E-mail</strong>
+						<span><a href="mailto:info@aureliarealestate.nl">info@aureliarealestate.nl</a></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="contact-form-wrapper">
+				<form class="contact-form" id="contact-form" onsubmit="event.preventDefault(); alert('Bedankt! We nemen binnen 24 uur discreet contact met u op.');">
+					<div class="form-group">
+						<label for="name">Naam</label>
+						<input type="text" id="name" required class="form-control" placeholder="Uw volledige naam" />
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="email">E-mailadres</label>
+							<input type="email" id="email" required class="form-control" placeholder="naam@voorbeeld.nl" />
+						</div>
+						<div class="form-group">
+							<label for="phone">Telefoonnummer</label>
+							<input type="tel" id="phone" class="form-control" placeholder="06 - 1234 5678" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="service-interest">Dienst</label>
+						<select id="service-interest" class="form-control">
+							<option value="aankoop">Aankoopbegeleiding</option>
+							<option value="verkoop">Verkoopbemiddeling</option>
+							<option value="taxatie">Taxatie</option>
+							<option value="anders">Anders</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="message">Bericht</label>
+						<textarea id="message" rows="4" class="form-control" placeholder="Hoe kunnen wij u van dienst zijn?"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block" id="contact-submit-btn">Verstuur Aanvraag</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
+</Layout>
+
+<style>
+	/* Hero Section */
+	.hero-section {
+		position: relative;
+		height: calc(100vh - 80px);
+		min-height: 550px;
+		display: flex;
+		align-items: center;
+		color: var(--color-white);
+		overflow: hidden;
+	}
+
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		transform: scale(1.02);
+		animation: slowZoom 20s infinite alternate;
+	}
+
+	@keyframes slowZoom {
+		from { transform: scale(1); }
+		to { transform: scale(1.08); }
+	}
+
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(15, 17, 21, 0.8) 0%, rgba(15, 17, 21, 0.4) 100%);
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 10;
+		max-width: 650px;
+	}
+
+	.hero-subtitle {
+		font-family: var(--font-sans);
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: var(--color-primary);
+		display: inline-block;
+		margin-bottom: 1.5rem;
+	}
+
+	.hero-content h1 {
+		font-size: 3.5rem;
+		color: var(--color-white);
+		margin-bottom: 1.5rem;
+		line-height: 1.15;
+	}
+
+	.hero-content p {
+		font-size: 1.15rem;
+		font-weight: 300;
+		margin-bottom: 2.5rem;
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.btn-white {
+		border-color: var(--color-white);
+		color: var(--color-white);
+	}
+
+	.btn-white:hover {
+		background-color: var(--color-white);
+		color: var(--color-bg-dark);
+		border-color: var(--color-white);
+	}
+
+	/* USP Section */
+	.usp-section {
+		background-color: var(--color-bg-dark);
+		color: var(--color-white);
+		padding: 4rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	}
+
+	.usp-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+		text-align: center;
+	}
+
+	.usp-number {
+		display: block;
+		font-family: var(--font-serif);
+		font-size: 2.8rem;
+		font-weight: 700;
+		color: var(--color-primary);
+		line-height: 1;
+		margin-bottom: 0.5rem;
+	}
+
+	.usp-label {
+		font-family: var(--font-sans);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #a0a5b0;
+	}
+
+	/* Section Commons */
+	section {
+		padding: 7.5rem 0;
+	}
+
+	.section-header {
+		margin-bottom: 4rem;
+	}
+
+	.section-header.text-center {
+		text-align: center;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.section-subtitle {
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: var(--color-primary);
+		display: inline-block;
+		margin-bottom: 0.8rem;
+	}
+
+	.section-header h2 {
+		font-size: 2.4rem;
+		margin-bottom: 1rem;
+	}
+
+	.section-divider {
+		width: 60px;
+		height: 2px;
+		background-color: var(--color-primary);
+		margin: 1.5rem auto;
+	}
+
+	.section-description {
+		color: var(--color-text-muted);
+		font-size: 1.05rem;
+	}
+
+	/* Services Preview */
+	.services-preview-section {
+		background-color: #fafbfc;
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2.5rem;
+		margin-bottom: 3.5rem;
+	}
+
+	.mt-4 {
+		margin-top: 2rem;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	/* About Highlight */
+	.about-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 5rem;
+		align-items: center;
+	}
+
+	.about-content h2 {
+		font-size: 2.4rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.about-content p {
+		color: var(--color-text-muted);
+		margin-bottom: 1.5rem;
+		font-size: 1.05rem;
+	}
+
+	.about-image-wrapper {
+		position: relative;
+		padding-left: 2rem;
+		padding-bottom: 2rem;
+	}
+
+	.about-image-border {
+		position: absolute;
+		top: 2rem;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 2px solid var(--color-primary);
+		z-index: 1;
+		border-radius: 4px;
+	}
+
+	.about-image {
+		width: 100%;
+		height: 450px;
+		object-fit: cover;
+		position: relative;
+		z-index: 2;
+		border-radius: 4px;
+		box-shadow: var(--shadow-lg);
+	}
+
+	/* Featured Properties */
+	.featured-properties-section {
+		background-color: var(--color-white);
+	}
+
+	.featured-properties-section .section-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		margin-bottom: 3.5rem;
+	}
+
+	.featured-properties-section .section-header h2 {
+		margin-bottom: 0;
+	}
+
+	.properties-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2.5rem;
+	}
+
+	/* Testimonials */
+	.testimonials-section {
+		background-color: #fafbfc;
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.testimonials-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+	}
+
+	.testimonial-card {
+		background-color: var(--color-white);
+		padding: 3.5rem;
+		border-radius: 4px;
+		box-shadow: var(--shadow-sm);
+		border: 1px solid var(--color-border);
+		position: relative;
+	}
+
+	.quote-icon {
+		font-family: var(--font-serif);
+		font-size: 5rem;
+		color: rgba(191, 161, 95, 0.15);
+		position: absolute;
+		top: 1.5rem;
+		left: 2rem;
+		line-height: 1;
+	}
+
+	.testimonial-text {
+		font-family: var(--font-serif);
+		font-size: 1.15rem;
+		font-style: italic;
+		line-height: 1.7;
+		margin-bottom: 2rem;
+		position: relative;
+		z-index: 2;
+	}
+
+	.testimonial-author {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.testimonial-author strong {
+		font-size: 1rem;
+		color: var(--color-text-dark);
+	}
+
+	.testimonial-author span {
+		font-size: 0.8rem;
+		color: var(--color-primary);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		margin-top: 2px;
+	}
+
+	/* Contact Section */
+	.contact-section {
+		background-color: var(--color-white);
+	}
+
+	.contact-container {
+		display: grid;
+		grid-template-columns: 1fr 1.2fr;
+		gap: 5rem;
+		align-items: flex-start;
+	}
+
+	.contact-info h2 {
+		font-size: 2.4rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.contact-info p {
+		color: var(--color-text-muted);
+		margin-bottom: 3rem;
+		font-size: 1.05rem;
+	}
+
+	.contact-details {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.contact-detail-item {
+		display: flex;
+		flex-direction: column;
+		border-left: 3px solid var(--color-primary);
+		padding-left: 1.2rem;
+	}
+
+	.contact-detail-item strong {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-primary);
+		margin-bottom: 0.3rem;
+	}
+
+	.contact-detail-item span {
+		font-family: var(--font-serif);
+		font-size: 1.15rem;
+		color: var(--color-text-dark);
+	}
+
+	.contact-form-wrapper {
+		background-color: var(--color-bg-light);
+		padding: 3.5rem;
+		border-radius: 4px;
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+	}
+
+	.form-group label {
+		font-size: 0.8rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-text-dark);
+	}
+
+	.form-control {
+		padding: 0.9rem 1.2rem;
+		font-family: var(--font-sans);
+		font-size: 0.95rem;
+		background-color: var(--color-white);
+		border: 1px solid var(--color-border);
+		border-radius: 2px;
+		transition: var(--transition-smooth);
+		width: 100%;
+		outline: none;
+	}
+
+	.form-control:focus {
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 3px rgba(191, 161, 95, 0.1);
+	}
+
+	textarea.form-control {
+		resize: none;
+	}
+
+	.btn-block {
+		width: 100%;
+	}
+
+	/* Responsive Grid adjustments */
+	@media (max-width: 1024px) {
+		.services-grid,
+		.properties-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+		}
+		
+		.properties-grid > div:last-child {
+			grid-column: span 2;
+			max-width: 50%;
+			margin: 0 auto;
+		}
+
+		.contact-container,
+		.about-grid {
+			grid-template-columns: 1fr;
+			gap: 4rem;
+		}
+
+		.about-image-wrapper {
+			order: -1;
+			max-width: 600px;
+			margin: 0 auto;
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		section {
+			padding: 4.5rem 0;
+		}
+
+		.hero-content h1 {
+			font-size: 2.6rem;
+		}
+
+		.usp-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 3rem;
+		}
+
+		.services-grid,
+		.properties-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.properties-grid > div:last-child {
+			max-width: 100%;
+		}
+
+		.testimonials-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.form-row {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.contact-form-wrapper {
+			padding: 2rem;
+		}
+	}
+</style>

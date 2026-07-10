@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Pagina niet gevonden" description="De pagina die u zoekt bestaat helaas niet. Keer terug naar de homepagina van Aurelia Real Estate.">
+	<section class="error-section">
+		<div class="container text-center">
+			<span class="error-code">404</span>
+			<h1>Pagina Niet Gevonden</h1>
+			<div class="section-divider"></div>
+			<p class="error-message">De pagina die u probeert te bezoeken bestaat niet of is verplaatst.</p>
+			<a href="/" class="btn btn-primary" id="error-home-btn">Terug naar Home</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.error-section {
+		padding: 10rem 0;
+		background-color: var(--color-bg-light);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 60vh;
+	}
+
+	.error-code {
+		display: block;
+		font-family: var(--font-serif);
+		font-size: 6rem;
+		font-weight: 700;
+		color: var(--color-primary);
+		line-height: 1;
+		margin-bottom: 1rem;
+	}
+
+	.error-section h1 {
+		font-size: 2.2rem;
+		margin-bottom: 1rem;
+	}
+
+	.error-message {
+		color: var(--color-text-muted);
+		font-size: 1.1rem;
+		margin-bottom: 2.5rem;
+	}
+</style>
